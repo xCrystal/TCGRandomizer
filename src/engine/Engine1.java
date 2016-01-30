@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -58,11 +59,38 @@ public class Engine1 {
 		}
 	}
 	
+	/** Saves all changes to tcgrandomized.gbc */
 	public void saveToRom (FileChannel ch, ByteBuffer bbWrite) throws IOException {
 		
 		Utils.init(ch);
 		bbWrite.rewind();
 		ch.write(bbWrite);
+	}
+	
+	/** Turns the tutorial into a regular duel to prevent the player from possibly getting stuck */
+	public void removePracticeMode (RandomAccessFile f) throws IOException {
+		
+		f.seek(0x2b86);
+		f.writeByte(0xaf);
+	}
+	
+	/** Fixes the global checksum */
+	public void globalChecksum (FileChannel ch) throws IOException {
+		
+		ch.position(0);
+		ByteBuffer rom = ByteBuffer.allocate(0x100000);
+		ch.read(rom);
+		
+		int checksum = 0;
+		for (byte b : rom.array())
+			checksum += ((int) b) & 0xff;
+		checksum -= 0xcc;
+		
+		ch.position(0x14e);
+		byte[] cs = new byte[2];
+		cs[0] = (byte) ((checksum >> 8) & 0xff);
+		cs[1] = (byte) (checksum & 0xff);
+		ch.write(ByteBuffer.wrap(cs));
 	}
 	
 }

@@ -1,6 +1,5 @@
 //TODO
 //Tutorial is broken
-//Checksum
 //Swap moves between same type cards
 //UI
 //...
@@ -21,7 +20,7 @@ public class TCGRandomizer {
 	
 	private static final Engine1 engine1 = new Engine1();
 
-	public static void main(String[] args) {
+	public static void main (String[] args) {
 		
 		long startTime = System.nanoTime();
 				
@@ -29,8 +28,10 @@ public class TCGRandomizer {
 		ByteBuffer bbWrite = ByteBuffer.allocate(Constants.PKMN_CARD_DATA_LENGTH * Constants.NUM_POKEMON_CARDS);
 		
 		try (
-				FileChannel chin  = (new RandomAccessFile(Constants.FILE_NAME_IN,  "r" )).getChannel();
-				FileChannel chout = (new RandomAccessFile(Constants.FILE_NAME_OUT, "rw")).getChannel();
+				RandomAccessFile fin = new RandomAccessFile(Constants.FILE_NAME_IN,  "r" );
+				RandomAccessFile fout = new RandomAccessFile(Constants.FILE_NAME_OUT,  "rw" );
+				FileChannel chin  = fin.getChannel();
+				FileChannel chout = fout.getChannel();
 		) 	{
 
 			if (engine1.verifyRom(chin) == false)
@@ -40,9 +41,11 @@ public class TCGRandomizer {
 			engine1.readPokemonCardsData(chin, bbRead, bbWrite);
 			engine1.doRandomization(bbRead, bbWrite);
 			engine1.saveToRom(chout, bbWrite);
+			engine1.removePracticeMode(fout);
+			engine1.globalChecksum(chout);
 			
 			long endTime = System.nanoTime();
-			Utils.print("tcgrandomized.gbc has been successfully generated. Took "+ (endTime - startTime) + " ns.");
+			Utils.print("tcgrandomized.gbc has been successfully generated. Took "+ (double) (endTime - startTime)/1000000 + " ms.");
 			
 		} catch (FileNotFoundException e) {
 			Utils.print(Constants.FILE_NAME_IN + " was not found in the directory "
