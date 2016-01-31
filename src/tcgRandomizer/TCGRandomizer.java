@@ -1,5 +1,4 @@
 //TODO
-//Tutorial is broken
 //Swap moves between same type cards
 //UI
 //...

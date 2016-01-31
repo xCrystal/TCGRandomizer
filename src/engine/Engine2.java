@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import constants.EvoTypes;
-import constants.Fields;
+import constants.Fields.CardFields;
+import constants.Fields.MoveFields;
 
 public class Engine2 {
 
@@ -18,14 +19,14 @@ public class Engine2 {
 	 *  Evolution 3 of 3 --> Between 70 and 120 HP<br>  */
 	public void randomizeHP (ByteBuffer bbWrite, int i, EvoTypes et) throws IOException {
 		
-		Utils.initTo(bbWrite, i, Fields.HP);
+		Utils.initTo(bbWrite, i, CardFields.HP);
 		bbWrite.put(Rng.randomRangeScale(et.getMinHP(), et.getMaxHP(), 10));
 	}
 	
 	/** 1 or 2 weaknesses (50% each), and 0 or 1 resistance (50% each) */
 	public void randomizeWR (ByteBuffer bbWrite, int i) throws IOException {
 		
-		Utils.initTo(bbWrite, i, Fields.WEAKNESS);
+		Utils.initTo(bbWrite, i, CardFields.WEAKNESS);
 		bbWrite.put(Rng.randomWR());
 	}
 	
@@ -37,8 +38,15 @@ public class Engine2 {
 	 *  Evolution 3 of 3 --> Between 2 and 3 retreat cost<br>  */
 	public void randomizeRetreatCost (ByteBuffer bbWrite, int i, EvoTypes et) throws IOException {
 		
-		Utils.initTo(bbWrite, i, Fields.RETREAT_COST);	
+		Utils.initTo(bbWrite, i, CardFields.RETREAT_COST);	
 		bbWrite.put(Rng.randomRange(et.getMinRC(), et.getMaxRC()));
+	}
+	
+	/** @return the number of energies required to use move in position mn of Pokemon card i*/
+	public int howManyEnergies (ByteBuffer bbRead, int i, int mn) throws IOException {
+		
+		Utils.initTo(bbRead, i, MoveFields.ENERGY, mn);		
+		return Utils.addNybbles(bbRead.getInt());
 	}
 
 }

@@ -7,7 +7,8 @@ import java.nio.channels.FileChannel;
 import javax.swing.JOptionPane;
 
 import constants.Constants;
-import constants.Fields;
+import constants.Fields.CardFields;
+import constants.Fields.MoveFields;
 
 public class Utils {
 
@@ -65,23 +66,40 @@ public class Utils {
 	}
 	
 	/** Inits ByteBuffer to position corresponding to Pokemon card i's field f */
-	public static void initTo (ByteBuffer bb, int i, Fields f) throws IOException {
+	public static void initTo (ByteBuffer bb, int i, CardFields cf) throws IOException {
 		
 		bb.rewind();
-		move(bb, Constants.PKMN_CARD_DATA_LENGTH * i + f.getOffset());
+		move(bb, Constants.PKMN_CARD_DATA_LENGTH * i + cf.getOffset());
+	}
+	
+	/** Inits ByteBuffer to position corresponding to Pokemon card i's move field f of move number mn*/
+	public static void initTo (ByteBuffer bb, int i, MoveFields mf, int mn) throws IOException {
+		
+		bb.rewind();
+		move(bb, Constants.PKMN_CARD_DATA_LENGTH * i + CardFields.MOVE1.getOffset() + 
+				Constants.PKMN_MOVE_DATA_LENGTH * mn + mf.getOffset());
 	}	
 	
 	/** Resets first ByteBuffer and inits second to position corresponding to Pokemon card i's field f */
-	public static void initTo (ByteBuffer bb1, ByteBuffer bb2, int i, Fields f) throws IOException {
+	public static void initTo (ByteBuffer bb1, ByteBuffer bb2, int i, CardFields cf) throws IOException {
 		
 		reset(bb1, bb2);
-		move(bb2, Constants.PKMN_CARD_DATA_LENGTH * i + f.getOffset());
+		move(bb2, Constants.PKMN_CARD_DATA_LENGTH * i + cf.getOffset());
 	}
 	
-	/** Generates ROM address from ROM pointer and ROM bank */
-	public static int romptrToAddress (int bank, int ptrLow, int ptrHigh) {
+	/** @return the sum of the values of the 8 nybbles in i */
+	public static int addNybbles (int i) {
 		
-		return (bank * 0x4000 + ((ptrHigh << 8) - 0x4000) + ptrLow);
-	}	
+		int sum = 0;
+		sum += i       & 0xF;
+		sum += i >>  4 & 0xF;
+		sum += i >>  8 & 0xF;
+		sum += i >> 12 & 0xF;
+		sum += i >> 16 & 0xF;
+		sum += i >> 20 & 0xF;
+		sum += i >> 24 & 0xF;
+		sum += i >> 28 & 0xF;
+		return sum;		
+	}
 	
 }
