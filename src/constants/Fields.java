@@ -4,6 +4,7 @@ public class Fields {
 
 	public enum CardFields {
 	
+		START         (0),
 		TYPE          (0),
 		GFX           (1),
 		NAME          (3),
@@ -25,7 +26,8 @@ public class Fields {
 		LENGTH       (58),
 		WEIGHT       (60),
 		DESCRIPTION  (62),
-		UNKNOWN      (64);
+		UNKNOWN      (64),
+		END          (65);
 	
 		private final int offset;
 	
@@ -41,6 +43,7 @@ public class Fields {
 	
 	public enum MoveFields {
 		
+		START         (0),
 		ENERGY        (0),
 		NAME          (4),
 		DESCRIPTION   (6),
@@ -51,7 +54,8 @@ public class Fields {
 		FLAGS2       (15),
 		FLAGS3       (16),
 		UNKNOWN1     (17),
-		UNKNOWN2     (18);
+		UNKNOWN2     (18),
+		END          (19);
 	
 		private final int offset;
 	

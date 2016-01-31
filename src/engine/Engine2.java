@@ -3,6 +3,7 @@ package engine;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
+import constants.Cards;
 import constants.EvoTypes;
 import constants.Fields.CardFields;
 import constants.Fields.MoveFields;
@@ -42,11 +43,68 @@ public class Engine2 {
 		bbWrite.put(Rng.randomRange(et.getMinRC(), et.getMaxRC()));
 	}
 	
-	/** @return the number of energies required to use move in position mn of Pokemon card i*/
+	/** @return the number of energies required to use move in position mn of Pokemon card i starting from typeOffset */
 	public int howManyEnergies (ByteBuffer bbRead, int i, int mn) throws IOException {
 		
 		Utils.initTo(bbRead, i, MoveFields.ENERGY, mn);		
 		return Utils.addNybbles(bbRead.getInt());
+	}
+	
+	/** Maps the moves from Pokemon cards between first and last into an integer array:<br>
+	 *  - 0 if move is a Pokemon power or is null.<br>
+	 *  Else:<br>
+	 *  - Bits 0-7: Move index<br>
+	 *  - Bits 8-9: Number of energies */
+	public int[] getMovesAsIndexArray (ByteBuffer bbRead, Cards first, Cards last) throws IOException {
+		
+		Utils.initTo(bbRead, first.ordinal(), CardFields.START);
+		int[] indexArray = new int[2 * (last.ordinal() + 1 - first.ordinal())];
+		
+		for (int pos = 0, curCard = 0, moveNumber = 0 ; pos < indexArray.length ; pos ++) {
+			
+			indexArray[pos] = pos;
+			
+			switch (howManyEnergies (bbRead, first.ordinal() + curCard, moveNumber)) {
+			
+			case 0:
+				indexArray[pos]  = 0;
+				break;
+			case 1:
+				indexArray[pos] |= 1 << 8;
+				break;
+			case 2:
+				indexArray[pos] |= 2 << 8;
+				break;
+			default:
+				indexArray[pos] |= 3 << 8;
+			}
+			
+			curCard += moveNumber;
+			moveNumber ^= 1;
+		}
+		
+		return indexArray;
+	}
+	
+	/** Shuffles the array of move indexes across same type Pokemon cards accounting for energy requirements */
+	public int[] shuffleMoveArray (int[] indexArray) {
+		
+		for (int curIndex = 0, randomIndex = 0, temp = 0 ; curIndex < indexArray.length ; 
+				randomIndex = Rng.randomRange(0, indexArray.length - 1)) {
+				
+			if ((indexArray[curIndex] & 0xf00) == (indexArray[randomIndex] & 0xf00)) {			
+				if (curIndex != randomIndex) {
+			
+					temp = indexArray[curIndex];
+					indexArray[curIndex] = indexArray[randomIndex];
+					indexArray[randomIndex] = temp;
+					curIndex ++;
+				}
+			}
+			
+		}
+		
+		return indexArray;
 	}
 
 }

@@ -53,10 +53,19 @@ public class Engine1 {
 			
 			EvoTypes et = EvoTypes.values()[Cards.values()[i].getEvoType()];
 			
-			engine2.randomizeHP(bbWrite, i, et);
-			engine2.randomizeWR(bbWrite, i);
-			engine2.randomizeRetreatCost(bbWrite, i, et);
+			engine2.randomizeHP(bbWrite, i, et);          /* HP                    */
+			engine2.randomizeWR(bbWrite, i);              /* Weakness & Resistance */
+			engine2.randomizeRetreatCost(bbWrite, i, et); /* Retreat Cost          */
 		}
+		
+		/* Moves */
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Bulbasaur,  Cards.Pinsir));
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Charmander, Cards.Moltres2));
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Squirtle,   Cards.Articuno2));
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pikachu1,   Cards.Zapdos3));
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Sandshrew,  Cards.Aerodactyl));
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Abra,       Cards.Mew3));
+		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pidgey,     Cards.Dragonite2));
 	}
 	
 	/** Saves all changes to tcgrandomized.gbc */
