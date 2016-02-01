@@ -1,5 +1,7 @@
 //TODO
 //Swap moves between same type cards
+//Fix Pokemon names in descriptions
+//Make randomization repeatable
 //UI
 //...
 
@@ -36,12 +38,12 @@ public class TCGRandomizer {
 			if (engine1.verifyRom(chin) == false)
 				throw new FileNotFoundException();
 			
-			engine1.copyRom(chin, chout);
+			engine1.createRomCopy(chin, chout);
 			engine1.readPokemonCardsData(chin, bbRead, bbWrite);
 			engine1.doRandomization(bbRead, bbWrite);
-			engine1.saveToRom(chout, bbWrite);
-			engine1.removePracticeMode(fout);
-			engine1.globalChecksum(chout);
+			engine1.saveChangesToRom(chout, bbWrite);
+			engine1.disablePracticeMode(fout);
+			engine1.fixGlobalChecksum(chout);
 			
 			long endTime = System.nanoTime();
 			Utils.print("tcgrandomized.gbc has been successfully generated. Took "+ (double) (endTime - startTime)/1000000 + " ms.");

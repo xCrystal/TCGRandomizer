@@ -30,7 +30,7 @@ public class Engine1 {
 	}
 	
 	/** Creates a copy of tcg.gbc named tcgrandomized.gbc */
-	public void copyRom (FileChannel chin, FileChannel chout) throws IOException {
+	public void createRomCopy (FileChannel chin, FileChannel chout) throws IOException {
 		
 		chin.transferTo(0, chin.size(), chout);
 	}
@@ -59,17 +59,25 @@ public class Engine1 {
 		}
 		
 		/* Moves */
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Bulbasaur,  Cards.Pinsir));
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Charmander, Cards.Moltres2));
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Squirtle,   Cards.Articuno2));
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pikachu1,   Cards.Zapdos3));
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Sandshrew,  Cards.Aerodactyl));
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Abra,       Cards.Mew3));
-		engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pidgey,     Cards.Dragonite2));
+		int[] grassArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Bulbasaur,  Cards.Pinsir));
+		int[] fireArray      = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Charmander, Cards.Moltres2));
+		int[] waterArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Squirtle,   Cards.Articuno2));
+		int[] lightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pikachu1,   Cards.Zapdos3));
+		int[] fightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Sandshrew,  Cards.Aerodactyl));
+		int[] psychicArray   = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Abra,       Cards.Mew3));
+		int[] colorlessArray = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pidgey,     Cards.Dragonite2));
+		
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, grassArray,     Cards.Bulbasaur);
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, fireArray,      Cards.Charmander);
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, waterArray,     Cards.Squirtle);
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, lightingArray,  Cards.Pikachu1);
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, fightingArray,  Cards.Sandshrew);
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, psychicArray,   Cards.Abra);
+		engine2.applyMoveArrayOrder (bbRead, bbWrite, colorlessArray, Cards.Pidgey);
 	}
 	
 	/** Saves all changes to tcgrandomized.gbc */
-	public void saveToRom (FileChannel ch, ByteBuffer bbWrite) throws IOException {
+	public void saveChangesToRom (FileChannel ch, ByteBuffer bbWrite) throws IOException {
 		
 		Utils.init(ch);
 		bbWrite.rewind();
@@ -77,14 +85,14 @@ public class Engine1 {
 	}
 	
 	/** Turns the tutorial into a regular duel to prevent the player from possibly getting stuck */
-	public void removePracticeMode (RandomAccessFile f) throws IOException {
+	public void disablePracticeMode (RandomAccessFile f) throws IOException {
 		
 		f.seek(0x2b86);
 		f.writeByte(0xaf);
 	}
 	
 	/** Fixes the global checksum */
-	public void globalChecksum (FileChannel ch) throws IOException {
+	public void fixGlobalChecksum (FileChannel ch) throws IOException {
 		
 		ch.position(0);
 		ByteBuffer rom = ByteBuffer.allocate(0x100000);

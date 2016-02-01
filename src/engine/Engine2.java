@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import constants.Cards;
+import constants.Constants;
 import constants.EvoTypes;
 import constants.Fields.CardFields;
 import constants.Fields.MoveFields;
@@ -100,11 +101,36 @@ public class Engine2 {
 					indexArray[randomIndex] = temp;
 					curIndex ++;
 				}
-			}
-			
+			}		
 		}
-		
 		return indexArray;
+	}
+	
+	/** Applies the result of ShuffleMoveArray to the actual Pokemon card move data in the ByteBuffer */
+	public void applyMoveArrayOrder (ByteBuffer bbRead, ByteBuffer bbWrite, int[] indexArray, Cards start) throws IOException {
+		
+		for (int i = 0 ; i < indexArray.length ; i ++) {
+			
+			if (indexArray[i] != 0) {
+			
+				indexArray[i] = indexArray[i] & 0xff;
+				CardFields moveField;
+			
+				if ((i & 1) == 0)
+					moveField = CardFields.MOVE1;
+				else
+					moveField = CardFields.MOVE2;			
+				Utils.initTo(bbWrite, start.ordinal() + i/2, moveField);
+			
+				if ((indexArray[i] & 1) == 0)
+					moveField = CardFields.MOVE1;
+				else
+					moveField = CardFields.MOVE2;			
+				Utils.initTo(bbRead, start.ordinal() + indexArray[i]/2, moveField);
+			
+				bbWrite.put(bbRead.array(), bbRead.position(), Constants.PKMN_MOVE_DATA_LENGTH);
+			}
+		}
 	}
 
 }
