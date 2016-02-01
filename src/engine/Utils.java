@@ -19,33 +19,6 @@ public class Utils {
 		JOptionPane.showMessageDialog(null, str);
 	}
 	
-	public static void print (int i) {
-		
-		System.out.println(i);
-	}
-	
-	public static void print (byte b) {
-		
-		System.out.println(b);
-	}
-	
-	public static void printh (int i) {
-		
-		System.out.printf("$%02x ", i);
-	}
-	
-	public static void printh (byte b) {
-		
-		System.out.printf("$%02x ", b);
-	}
-	
-	public static void printh (ByteBuffer bytes) {
-		
-		for (byte b : bytes.array()) {
-			printh(b);
-		}
-	}
-	
 	/** Sets FileChannel position to start of Pokemon cards data */
 	public static void init (FileChannel ch) throws IOException {
 		
@@ -78,13 +51,6 @@ public class Utils {
 		bb.rewind();
 		move(bb, Constants.PKMN_CARD_DATA_LENGTH * i + CardFields.MOVE1.getOffset() + 
 				Constants.PKMN_MOVE_DATA_LENGTH * mn + mf.getOffset());
-	}	
-	
-	/** Resets first ByteBuffer and inits second to position corresponding to Pokemon card i's field f */
-	public static void initTo (ByteBuffer bb1, ByteBuffer bb2, int i, CardFields cf) throws IOException {
-		
-		reset(bb1, bb2);
-		move(bb2, Constants.PKMN_CARD_DATA_LENGTH * i + cf.getOffset());
 	}
 	
 	/** @return the sum of the values of the 8 nybbles in i */

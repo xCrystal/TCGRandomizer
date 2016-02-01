@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class Rng {
 	
-	private final static Random rnd = new Random();
+	private static final Random rnd = new Random();
 
 	public Rng() {}
 		
 	/** @return a random number between min and max inclusive */
-	public static byte randomRange (int min, int max) {	
+	public static byte randomRange (int min, int max) {
 		
 		return (byte) (min + rnd.nextInt(max - min + 1));
 	}
