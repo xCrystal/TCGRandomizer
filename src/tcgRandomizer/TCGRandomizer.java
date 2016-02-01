@@ -1,8 +1,8 @@
 //TODO
-//Swap moves between same type cards
 //Fix Pokemon names in descriptions
 //Make randomization repeatable
-//UI
+//GUI with selectable options
+//Maybe randomize types (and type of moves) and other data
 //...
 
 package tcgRandomizer;
