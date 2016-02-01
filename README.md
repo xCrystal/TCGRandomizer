@@ -4,6 +4,8 @@ A basic randomizer of Pokemon TCG (GBC), written in Java. Work in progress.
 It randomizes the following ROM:
 * Pokémon Trading Card Game (U) [C][!].gbc md5: 219b2cc64e5a052003015d4bd4c622cd
 
+#### <b>Current features</b>
+
 Currently, it randomizes the following:
 * HP
 * Weaknesses and resistances
@@ -14,7 +16,8 @@ It distinguishes between 6 types of evolution classes or stages to determine the
 
 At the moment, the Pokemon TCG ROM detailed above must be in the same directory as the .jar file. Upon executing the .jar file, tcgrandomized.gbc will be generated.
 
-<b>Planned features or tweaks</b>
+#### <b>Planned features or tweaks</b>
+
 * Fix wrong Pokemon names showing in the descriptions of the shuffled moves
 * GUI
 * Further randomization of moves, beyond just shuffling the effects, and randomizing energy requirements and damage. Randomizing the move effects themselves may be a possibility, but further reverse engineering of the Pokemon TCG duel engine will be necessary first.
@@ -23,3 +26,16 @@ At the moment, the Pokemon TCG ROM detailed above must be in the same directory 
 * Some customizable randomization settings including the option to make the randomization repeatable so that different people can generate the same changes.
 
 Contributions aren't expected but would always be welcome.
+
+#### <b>Screenshots</b>
+
+![1](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/1.bmp)
+![2](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/2.bmp)
+![3](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/3.bmp)
+![4](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/4.bmp)
+![5](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/5.bmp)
+![6](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/6.bmp)
+![7](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/7.bmp)
+![8](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/8.bmp)
+![9](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/9.bmp)
+![10](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/10.bmp)
