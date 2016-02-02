@@ -40,6 +40,6 @@ Contributions aren't expected but would always be welcome.
 
 #### <b>Download</b>
 
-![JAR file]TCGRandomizer.jar?raw=true
+[TCGRandomizer.jar](TCGRandomizer.jar?raw=true)
 
 At the moment, the Pokemon TCG ROM detailed above must be in the same directory as the .jar file. Upon executing the .jar file, tcgrandomized.gbc will be generated.
