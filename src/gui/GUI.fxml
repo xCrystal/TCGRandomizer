@@ -2,14 +2,19 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="75.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<AnchorPane prefHeight="175.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <ButtonBar buttonMinWidth="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="0.0">
+      <ButtonBar buttonMinWidth="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="100.0">
         <buttons>
-          <Button contentDisplay="CENTER" mnemonicParsing="false" text="Randomize!" textAlignment="CENTER" onMouseClicked="#begin"/>
+          <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#begin" text="Randomize!" textAlignment="CENTER" />
         </buttons>
       </ButtonBar>
+      <CheckBox mnemonicParsing="false" onMouseClicked="#handleHPOptionClick" text="Randomize HP" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
+      <CheckBox layoutX="35.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#handleWROptionClick" text="Randomize weakness &amp; resistance" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="50.0" />
+      <CheckBox layoutX="45.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#handleRCOptionClick" text="Randomize retreat cost" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="75.0" />
+      <CheckBox layoutX="55.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#handleMovesOptionClick" text="Shuffle moves" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0" />
    </children>
 </AnchorPane>

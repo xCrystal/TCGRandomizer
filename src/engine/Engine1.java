@@ -8,9 +8,13 @@ import java.nio.channels.FileChannel;
 import constants.Cards;
 import constants.Constants;
 import constants.EvoTypes;
+import constants.Settings;
+import gui.GUIController;
 
 public class Engine1 {
 		
+	private static final GUIController gui = GUIController.getGuiController();
+
 	public Engine1() {}
 	
 	/** Makes sure that tcg.gbc is actually a tcg ROM 
@@ -53,27 +57,30 @@ public class Engine1 {
 			
 			EvoTypes et = EvoTypes.values()[Cards.values()[i].getEvoType()];
 			
-			engine2.randomizeHP(bbWrite, i, et);          /* HP                    */
-			engine2.randomizeWR(bbWrite, i);              /* Weakness & Resistance */
-			engine2.randomizeRetreatCost(bbWrite, i, et); /* Retreat Cost          */
+			if (gui.getOption(Settings.Options.HP.ordinal())) engine2.randomizeHP(bbWrite, i, et);          /* HP */
+			if (gui.getOption(Settings.Options.WR.ordinal())) engine2.randomizeWR(bbWrite, i);              /* Weakness & Resistance */
+			if (gui.getOption(Settings.Options.RC.ordinal())) engine2.randomizeRetreatCost(bbWrite, i, et); /* Retreat Cost          */
 		}
 		
 		/* Moves */
-		int[] grassArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Bulbasaur,  Cards.Pinsir));
-		int[] fireArray      = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Charmander, Cards.Moltres2));
-		int[] waterArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Squirtle,   Cards.Articuno2));
-		int[] lightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pikachu1,   Cards.Zapdos3));
-		int[] fightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Sandshrew,  Cards.Aerodactyl));
-		int[] psychicArray   = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Abra,       Cards.Mew3));
-		int[] colorlessArray = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pidgey,     Cards.Dragonite2));
+		if (gui.getOption(Settings.Options.MOVES.ordinal())) {
+			
+			int[] grassArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Bulbasaur,  Cards.Pinsir));
+			int[] fireArray      = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Charmander, Cards.Moltres2));
+			int[] waterArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Squirtle,   Cards.Articuno2));
+			int[] lightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pikachu1,   Cards.Zapdos3));
+			int[] fightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Sandshrew,  Cards.Aerodactyl));
+			int[] psychicArray   = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Abra,       Cards.Mew3));
+			int[] colorlessArray = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pidgey,     Cards.Dragonite2));
 		
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, grassArray,     Cards.Bulbasaur);
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, fireArray,      Cards.Charmander);
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, waterArray,     Cards.Squirtle);
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, lightingArray,  Cards.Pikachu1);
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, fightingArray,  Cards.Sandshrew);
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, psychicArray,   Cards.Abra);
-		engine2.applyMoveArrayOrder (bbRead, bbWrite, colorlessArray, Cards.Pidgey);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, grassArray,     Cards.Bulbasaur);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, fireArray,      Cards.Charmander);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, waterArray,     Cards.Squirtle);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, lightingArray,  Cards.Pikachu1);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, fightingArray,  Cards.Sandshrew);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, psychicArray,   Cards.Abra);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, colorlessArray, Cards.Pidgey);
+		}
 	}
 	
 	/** Saves all changes to tcgrandomized.gbc */

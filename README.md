@@ -42,4 +42,4 @@ Contributions aren't expected but would always be welcome.
 
 [TCGRandomizer.jar](TCGRandomizer.jar?raw=true)
 
-At the moment, the Pokemon TCG ROM detailed above must be in the same directory as the .jar file. Upon executing the .jar file, tcgrandomized.gbc will be generated.
+At the moment, the Pokemon TCG ROM detailed above must be in the same directory as the .jar file. Executing the .jar file and choose your settings. Finally, click on the "Randomize!" button to generate a randomized ROM named tcgrandomized.gbc.
