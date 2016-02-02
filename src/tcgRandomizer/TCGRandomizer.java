@@ -21,7 +21,7 @@ public class TCGRandomizer {
 	
 	private static final Engine1 engine1 = new Engine1();
 
-	public static void main (String[] args) {
+	public static void main () {
 		
 		long startTime = System.nanoTime();
 				
@@ -50,8 +50,8 @@ public class TCGRandomizer {
 			
 		} catch (FileNotFoundException e) {
 			Utils.print(Constants.FILE_NAME_IN + " was not found in the directory "
-					+ "or is not a valid Pokemon tcg ROM.\n"
-					+ "Required ROM information:\n"
+					+ "or is not a valid Pokemon TCG ROM.\n"
+					+ "Required ROM:\n"
 					+ "Pokémon Trading Card Game (U) [C][!].gbc md5: 219b2cc64e5a052003015d4bd4c622cd\n");
 			
 		} catch (IOException e) {

@@ -14,8 +14,6 @@ Currently, it randomizes the following:
 
 It distinguishes between 6 types of evolution classes or stages to determine the possible values of HP and retreat cost.
 
-At the moment, the Pokemon TCG ROM detailed above must be in the same directory as the .jar file. Upon executing the .jar file, tcgrandomized.gbc will be generated.
-
 #### <b>Planned features or tweaks</b>
 
 * Fix wrong Pokemon names showing in the descriptions of the shuffled moves
@@ -39,3 +37,9 @@ Contributions aren't expected but would always be welcome.
 ![8](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/8.bmp)
 ![9](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/9.bmp)
 ![10](https://raw.githubusercontent.com/xCrystal/TCGRandomizer/master/screenshots/10.bmp)
+
+#### <b>Download</b>
+
+![JAR file]TCGRandomizer.jar?raw=true
+
+At the moment, the Pokemon TCG ROM detailed above must be in the same directory as the .jar file. Upon executing the .jar file, tcgrandomized.gbc will be generated.
