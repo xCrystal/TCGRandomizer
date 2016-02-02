@@ -5,10 +5,11 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+import static constants.Cards.*;
 import constants.Cards;
 import constants.Constants;
 import constants.EvoTypes;
-import constants.Settings;
+import constants.Settings.Options;
 import gui.GUIController;
 
 public class Engine1 {
@@ -57,29 +58,29 @@ public class Engine1 {
 			
 			EvoTypes et = EvoTypes.values()[Cards.values()[i].getEvoType()];
 			
-			if (gui.getOption(Settings.Options.HP.ordinal())) engine2.randomizeHP(bbWrite, i, et);          /* HP */
-			if (gui.getOption(Settings.Options.WR.ordinal())) engine2.randomizeWR(bbWrite, i);              /* Weakness & Resistance */
-			if (gui.getOption(Settings.Options.RC.ordinal())) engine2.randomizeRetreatCost(bbWrite, i, et); /* Retreat Cost          */
+			if (gui.getOption(Options.HP.ordinal())) engine2.randomizeHP(bbWrite, i, et);          /* HP */
+			if (gui.getOption(Options.WR.ordinal())) engine2.randomizeWR(bbWrite, i);              /* Weakness & Resistance */
+			if (gui.getOption(Options.RC.ordinal())) engine2.randomizeRetreatCost(bbWrite, i, et); /* Retreat Cost          */
 		}
 		
 		/* Moves */
-		if (gui.getOption(Settings.Options.MOVES.ordinal())) {
+		if (gui.getOption(Options.MOVES.ordinal())) {
 			
-			int[] grassArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Bulbasaur,  Cards.Pinsir));
-			int[] fireArray      = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Charmander, Cards.Moltres2));
-			int[] waterArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Squirtle,   Cards.Articuno2));
-			int[] lightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pikachu1,   Cards.Zapdos3));
-			int[] fightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Sandshrew,  Cards.Aerodactyl));
-			int[] psychicArray   = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Abra,       Cards.Mew3));
-			int[] colorlessArray = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Cards.Pidgey,     Cards.Dragonite2));
+			int[] grassArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Bulbasaur,  Pinsir));
+			int[] fireArray      = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Charmander, Moltres2));
+			int[] waterArray     = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Squirtle,   Articuno2));
+			int[] lightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Pikachu1,   Zapdos3));
+			int[] fightingArray  = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Sandshrew,  Aerodactyl));
+			int[] psychicArray   = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Abra,       Mew3));
+			int[] colorlessArray = engine2.shuffleMoveArray(engine2.getMovesAsIndexArray(bbRead, Pidgey,     Dragonite2));
 		
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, grassArray,     Cards.Bulbasaur);
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, fireArray,      Cards.Charmander);
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, waterArray,     Cards.Squirtle);
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, lightingArray,  Cards.Pikachu1);
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, fightingArray,  Cards.Sandshrew);
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, psychicArray,   Cards.Abra);
-			engine2.applyMoveArrayOrder (bbRead, bbWrite, colorlessArray, Cards.Pidgey);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, grassArray,     Bulbasaur);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, fireArray,      Charmander);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, waterArray,     Squirtle);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, lightingArray,  Pikachu1);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, fightingArray,  Sandshrew);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, psychicArray,   Abra);
+			engine2.applyMoveArrayOrder (bbRead, bbWrite, colorlessArray, Pidgey);
 		}
 	}
 	
