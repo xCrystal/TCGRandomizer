@@ -6,7 +6,7 @@ It randomizes the following ROM:
 
 #### <b>Current features</b>
 
-Currently, it randomizes the following (selectable):
+Currently, it randomizes the following data inherent to Pokemon cards (all options are selectable):
 * HP
 * Weaknesses and resistances
 * Retreat cost
