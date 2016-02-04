@@ -11,6 +11,11 @@ public class RNG {
 	/** @return a random number between min and max inclusive */
 	public static byte randomRange (int min, int max) {
 		
+		if (min > max) {
+			int temp = min;
+			min = max;
+			max = temp;
+		}
 		return (byte) (min + rnd.nextInt(max - min + 1));
 	}
 
