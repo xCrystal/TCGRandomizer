@@ -51,12 +51,28 @@ public class GUIController implements Initializable {
 	
 	/** Used during initialization to mark all options as true */
 	public void setAllOptions() {
-		handleHPOptionClick();
-		handleWROptionClick();
-		handleRCOptionClick();
-		handleMovesOptionClick();
+		handleHPOption();
+		handleWROption();
+		handleRCOption();
+		handleMovesOption();
 	}
-	
+
+	private void handleHPOption() {
+		setOption (Settings.Options.HP.ordinal());
+	}
+
+	private void handleWROption() {
+		setOption (Settings.Options.WR.ordinal());
+	}
+
+	private void handleRCOption() {
+		setOption (Settings.Options.RC.ordinal());
+	}
+
+	private void handleMovesOption() {
+		setOption (Settings.Options.MOVES.ordinal());
+	}
+
 	@FXML
 	private void beginProgram() {
 		MainLogic.main();
@@ -64,22 +80,46 @@ public class GUIController implements Initializable {
 	
 	@FXML
 	private void handleHPOptionClick() {
-		setOption (Settings.Options.HP.ordinal());
+		handleHPOption();
+		minHP1.setDisable(minHP1.isDisable()^true);
+		maxHP1.setDisable(maxHP1.isDisable()^true);
+		minHP2.setDisable(minHP2.isDisable()^true);
+		maxHP2.setDisable(maxHP2.isDisable()^true);
+		minHP3.setDisable(minHP3.isDisable()^true);
+		maxHP3.setDisable(maxHP3.isDisable()^true);
+		minHP4.setDisable(minHP4.isDisable()^true);
+		maxHP4.setDisable(maxHP4.isDisable()^true);
+		minHP5.setDisable(minHP5.isDisable()^true);
+		maxHP5.setDisable(maxHP5.isDisable()^true);
+		minHP6.setDisable(minHP6.isDisable()^true);
+		maxHP6.setDisable(maxHP6.isDisable()^true);
 	}
 	
 	@FXML
 	private void handleWROptionClick() {
-		setOption (Settings.Options.WR.ordinal());
+		handleWROption();
 	}
 	
 	@FXML
 	private void handleRCOptionClick() {	
-		setOption (Settings.Options.RC.ordinal());
+		handleRCOption();
+		minRC1.setDisable(minRC1.isDisable()^true);
+		maxRC1.setDisable(maxRC1.isDisable()^true);
+		minRC2.setDisable(minRC2.isDisable()^true);
+		maxRC2.setDisable(maxRC2.isDisable()^true);
+		minRC3.setDisable(minRC3.isDisable()^true);
+		maxRC3.setDisable(maxRC3.isDisable()^true);
+		minRC4.setDisable(minRC4.isDisable()^true);
+		maxRC4.setDisable(maxRC4.isDisable()^true);
+		minRC5.setDisable(minRC5.isDisable()^true);
+		maxRC5.setDisable(maxRC5.isDisable()^true);
+		minRC6.setDisable(minRC6.isDisable()^true);
+		maxRC6.setDisable(maxRC6.isDisable()^true);
 	}
 	
 	@FXML
 	private void handleMovesOptionClick() {	
-		setOption (Settings.Options.MOVES.ordinal());
+		handleMovesOption();
 	}
 	
 	/** Initializes all options to selected */
