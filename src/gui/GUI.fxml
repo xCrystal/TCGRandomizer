@@ -18,10 +18,10 @@
                </font></Button>
         </buttons>
       </ButtonBar>
-      <CheckBox layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#handleHPOptionClick" text="Randomize HP" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="21.0" />
-      <CheckBox layoutX="25.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#handleWROptionClick" text="Randomize weakness &amp; resistance" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="46.0" />
-      <CheckBox layoutX="25.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#handleRCOptionClick" text="Randomize retreat cost" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="71.0" />
-      <CheckBox layoutX="25.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMovesOptionClick" text="Shuffle moves" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
+      <CheckBox fx:id="optionHP" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#handleHPOptionClick" text="Randomize HP" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="21.0" />
+      <CheckBox fx:id="optionWR" layoutX="25.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#handleWROptionClick" text="Randomize weakness &amp; resistance" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="46.0" />
+      <CheckBox fx:id="optionRC" layoutX="25.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#handleRCOptionClick" text="Randomize retreat cost" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="71.0" />
+      <CheckBox fx:id="optionMoves" layoutX="25.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMovesOptionClick" text="Shuffle moves" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
       <ChoiceBox fx:id="minHP1" layoutX="108.0" layoutY="158.0" prefWidth="75.0" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="158.0" />
       <ChoiceBox fx:id="minHP2" layoutX="108.0" layoutY="190.0" prefWidth="75.0" />
       <ChoiceBox fx:id="maxHP1" layoutX="193.0" layoutY="158.0" prefWidth="75.0" />
