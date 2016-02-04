@@ -36,7 +36,7 @@ public class GUIController implements Initializable {
 	@Override
 	public void initialize (URL location, ResourceBundle resources) {
 		
-		initCheckBoxes();
+		setAllOptions();
 		initChoiceBoxes();
 		choiceBoxesListener();
 	}
@@ -120,16 +120,6 @@ public class GUIController implements Initializable {
 	@FXML
 	private void handleMovesOptionClick() {	
 		handleMovesOption();
-	}
-	
-	/** Initializes all options to selected */
-	private void initCheckBoxes() {
-		
-		optionHP.setSelected(true);
-		optionWR.setSelected(true);
-		optionRC.setSelected(true);
-		optionMoves.setSelected(true);
-		setAllOptions();
 	}
 	
 	/** Initializes all choice boxes to their default values */
