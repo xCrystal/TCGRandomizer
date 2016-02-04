@@ -1,7 +1,6 @@
 //TODO
 //Fix Pokemon names in descriptions
 //Make randomization repeatable
-//GUI with selectable options
 //Maybe randomize types (and type of moves) and other data
 //...
 

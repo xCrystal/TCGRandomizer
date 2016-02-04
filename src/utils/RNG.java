@@ -25,26 +25,30 @@ public class RNG {
 		return (byte) (delta * randomRange(min/delta, max/delta));
 	}
 	
-	/** @return random valid weakness and resistance values */
-	public static byte[] randomWR() {
+	/** @return random valid weakness and resistance values, making sure they don't overlap */
+	public static byte[] randomWR (int minW, int maxW, int minR, int maxR) {
 		
-		int w1, w2 = 0, w3 = 0;
+		int numW = randomRange(minW, maxW);
+		int numR = randomRange(minR, maxR);
+		int w = 0, r = 0;
 		
-		w1 = 1 << randomRange(2, 7);
+		do {
+			
+			if (numW != 0) {
+				do {
+					w = rnd.nextInt(64) << 2;
+				} while (Integer.bitCount(w) != numW);
+			}
 		
-		if (rnd.nextInt(2) == 0) {
-			do {
-				w2 = 1 << randomRange(2, 7);
-			} while (w1 == w2);
-		}
+			if (numR != 0) {
+				do {
+					r = rnd.nextInt(64) << 2;
+				} while (Integer.bitCount(r) != numR);
+			}
+				
+			} while ((w & r) != 0);
 		
-		if (rnd.nextInt(2) == 0) {
-			do {
-				w3 = 1 << randomRange(2, 7);
-			} while ((w3 == w1) || (w3 == w2));
-		}
-		
-		byte[] b = {(byte) (w1 | w2), (byte) w3};
+		byte[] b = {(byte) w, (byte) r};
 		
 		return b;
 	}	

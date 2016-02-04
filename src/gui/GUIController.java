@@ -23,11 +23,17 @@ public class GUIController implements Initializable {
 	private List<Integer> HPList = new ArrayList<Integer>();
 	private List<Integer> RCList = new ArrayList<Integer>();
 	
+	/* Options to randomize HP, weaknesses/resistances, retreat cost, and shuffle moves */
 	@FXML private CheckBox optionHP, optionWR, optionRC, optionMoves;
+	
+	/* Minimum and maximum HP and retreat cost values for each of the 6 evolution types */
 	@FXML private ChoiceBox<Integer> minHP1, minHP2, minHP3, minHP4, minHP5, minHP6;
 	@FXML private ChoiceBox<Integer> maxHP1, maxHP2, maxHP3, maxHP4, maxHP5, maxHP6;
 	@FXML private ChoiceBox<Integer> minRC1, minRC2, minRC3, minRC4, minRC5, minRC6;
 	@FXML private ChoiceBox<Integer> maxRC1, maxRC2, maxRC3, maxRC4, maxRC5, maxRC6;
+	
+	/* Minimum and maximum number of weaknesses and resistances */
+	@FXML private ChoiceBox<Integer> minW, maxW, minR, maxR;
 
 	public static GUIController getGuiController() {
 		return guiController;
@@ -98,6 +104,10 @@ public class GUIController implements Initializable {
 	@FXML
 	private void handleWROptionClick() {
 		handleWROption();
+		minW.setDisable(minW.isDisable()^true);
+		maxW.setDisable(maxW.isDisable()^true);
+		minR.setDisable(minR.isDisable()^true);
+		maxR.setDisable(maxR.isDisable()^true);
 	}
 	
 	@FXML
@@ -181,6 +191,16 @@ public class GUIController implements Initializable {
 		maxHP6.getItems().addAll(HPList);
 		minRC6.getItems().addAll(RCList);
 		maxRC6.getItems().addAll(RCList);
+		
+		/* RCList doubles as WRList */
+		minW.setValue(Settings.settings.getMinWeaknesses());
+		maxW.setValue(Settings.settings.getMaxWeaknesses());
+		minR.setValue(Settings.settings.getMinResistances());
+		maxR.setValue(Settings.settings.getMaxResistances());
+		minW.getItems().addAll(RCList);
+		maxW.getItems().addAll(RCList);
+		minR.getItems().addAll(RCList);
+		maxR.getItems().addAll(RCList);
 	}
 	
 	/** Listens to value of choice box changing */
@@ -375,6 +395,38 @@ public class GUIController implements Initializable {
 			@Override
 			public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
 				EvoTypes.EVO3OF3.setMaxRC(RCList.get(newValue.intValue()));
+			}
+		});
+		
+		minW.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			
+			@Override
+			public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+				Settings.settings.setMinWeaknesses(RCList.get(newValue.intValue()));
+			}
+		});
+		
+		maxW.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			
+			@Override
+			public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+				Settings.settings.setMaxWeaknesses(RCList.get(newValue.intValue()));
+			}
+		});
+		
+		minR.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			
+			@Override
+			public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+				Settings.settings.setMinResistances(RCList.get(newValue.intValue()));
+			}
+		});
+		
+		maxR.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			
+			@Override
+			public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+				Settings.settings.setMaxResistances(RCList.get(newValue.intValue()));
 			}
 		});
 	}

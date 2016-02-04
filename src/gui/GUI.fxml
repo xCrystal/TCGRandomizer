@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="416.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
+<AnchorPane prefHeight="521.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <ButtonBar buttonMinWidth="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="340.0">
+      <ButtonBar buttonMinWidth="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="445.0">
         <buttons>
           <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#beginProgram" text="Randomize!" textAlignment="CENTER">
                <font>
@@ -56,5 +56,13 @@
       <ChoiceBox fx:id="maxRC6" layoutX="362.0" layoutY="315.0" prefWidth="75.0" />
       <Label layoutX="26.0" layoutY="283.0" prefHeight="25.0" prefWidth="80.0" text="Evolution 2/3" />
       <Label layoutX="26.0" layoutY="315.0" prefHeight="25.0" prefWidth="80.0" text="Evolution 3/3" />
+      <ChoiceBox fx:id="minW" layoutX="122.0" layoutY="389.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxW" layoutX="207.0" layoutY="389.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minR" layoutX="122.0" layoutY="421.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxR" layoutX="207.0" layoutY="421.0" prefWidth="75.0" />
+      <Label layoutX="25.0" layoutY="390.0" prefHeight="25.0" prefWidth="96.0" text="# of weaknesses" />
+      <Label layoutX="29.0" layoutY="422.0" prefHeight="25.0" prefWidth="96.0" text="# of resistances" />
+      <Label alignment="CENTER" layoutX="122.0" layoutY="362.0" prefHeight="25.0" prefWidth="75.0" text="Minimum" />
+      <Label alignment="CENTER" layoutX="207.0" layoutY="362.0" prefHeight="25.0" prefWidth="75.0" text="Maximum" />
    </children>
 </AnchorPane>

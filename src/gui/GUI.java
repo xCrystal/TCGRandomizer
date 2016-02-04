@@ -24,6 +24,7 @@ public class GUI extends Application {
 		ap = loader.load();
 		primaryStage.setTitle("TCG Randomizer");
 		primaryStage.setScene(new Scene(ap));
+		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 

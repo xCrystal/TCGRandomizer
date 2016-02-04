@@ -8,6 +8,7 @@ import constants.Constants;
 import constants.Fields.CardFields;
 import constants.Fields.MoveFields;
 import settings.EvoTypes;
+import settings.Settings;
 import utils.RNG;
 import utils.Utils;
 
@@ -15,7 +16,8 @@ class RandomizerLogic {
 
 	RandomizerLogic() {}
 	
-	/** Evolution 1 of 1 --> Between 50 and  80 HP<br>
+	/** Default values:<br>
+	 * 	Evolution 1 of 1 --> Between 50 and  80 HP<br>
 	 *  Evolution 1 of 2 --> Between 30 and  60 HP<br>
 	 *  Evolution 2 of 2 --> Between 60 and  90 HP<br>
 	 *  Evolution 1 of 3 --> Between 30 and  50 HP<br>
@@ -31,10 +33,14 @@ class RandomizerLogic {
 	static void randomizeWR (ByteBuffer bbWrite, int i) throws IOException {
 		
 		Utils.initTo(bbWrite, i, CardFields.WEAKNESS);
-		bbWrite.put(RNG.randomWR());
+		bbWrite.put(RNG.randomWR(
+				Settings.settings.getMinWeaknesses(), Settings.settings.getMaxWeaknesses(),
+				Settings.settings.getMinResistances(), Settings.settings.getMaxResistances())
+				);
 	}
 	
-	/** Evolution 1 of 1 --> Between 1 and 3 retreat cost<br>
+	/** Default values:<br>
+	 *  Evolution 1 of 1 --> Between 1 and 3 retreat cost<br>
 	 *  Evolution 1 of 2 --> Between 0 and 1 retreat cost<br>
 	 *  Evolution 2 of 2 --> Between 1 and 3 retreat cost<br>
 	 *  Evolution 1 of 3 --> Between 0 and 1 retreat cost<br>
