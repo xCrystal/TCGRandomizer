@@ -1,4 +1,4 @@
-package constants;
+package settings;
 
 public enum EvoTypes {
 	
@@ -9,10 +9,10 @@ public enum EvoTypes {
 	EVO2OF3 (50,  70, 1, 2),
 	EVO3OF3 (70, 120, 2, 3);
 	
-	private final int minHP;
-	private final int maxHP;
-	private final int minRC;
-	private final int maxRC;	
+	private int minHP;
+	private int maxHP;
+	private int minRC;
+	private int maxRC;
 
 	EvoTypes (int minHP, int maxHP, int minRC, int maxRC) {
 		
@@ -25,16 +25,33 @@ public enum EvoTypes {
 	public int getMinHP() {
 		return minHP;
 	}
-	
+
+	public void setMinHP(int minHP) {
+		this.minHP = minHP;
+	}
+
 	public int getMaxHP() {
 		return maxHP;
+	}
+
+	public void setMaxHP(int maxHP) {
+		this.maxHP = maxHP;
 	}
 
 	public int getMinRC() {
 		return minRC;
 	}
 
+	public void setMinRC(int minRC) {
+		this.minRC = minRC;
+	}
+
 	public int getMaxRC() {
 		return maxRC;
-	}	
+	}
+
+	public void setMaxRC(int maxRC) {
+		this.maxRC = maxRC;
+	}
+	
 }

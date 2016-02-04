@@ -5,9 +5,9 @@ import java.nio.ByteBuffer;
 
 import constants.Cards;
 import constants.Constants;
-import constants.EvoTypes;
 import constants.Fields.CardFields;
 import constants.Fields.MoveFields;
+import settings.EvoTypes;
 import utils.RNG;
 import utils.Utils;
 

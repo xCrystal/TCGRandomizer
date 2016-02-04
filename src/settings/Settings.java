@@ -1,4 +1,4 @@
-package constants;
+package settings;
 
 public class Settings {
 

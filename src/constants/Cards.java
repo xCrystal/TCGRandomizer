@@ -1,5 +1,7 @@
 package constants;
 
+import settings.EvoTypes;
+
 public enum Cards {
 	
 	Bulbasaur (EvoTypes.EVO1OF3.ordinal()),

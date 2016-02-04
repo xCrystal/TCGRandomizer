@@ -8,14 +8,14 @@ import java.nio.channels.FileChannel;
 import static constants.Cards.*;
 import constants.Cards;
 import constants.Constants;
-import constants.EvoTypes;
-import constants.Settings.Options;
-import gui.GUI;
+import gui.GUIController;
+import settings.EvoTypes;
+import settings.Settings.Options;
 import utils.Utils;
 
 class ProgramLogic {
 		
-	private static final GUI gui = GUI.getGuiController();
+	private static final GUIController gui = GUIController.getGuiController();
 
 	ProgramLogic() {}
 	

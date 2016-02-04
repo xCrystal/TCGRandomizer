@@ -3,18 +3,58 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="175.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUI">
+<AnchorPane prefHeight="416.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GUIController">
    <children>
-      <ButtonBar buttonMinWidth="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="100.0">
+      <ButtonBar buttonMinWidth="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="340.0">
         <buttons>
-          <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#begin" text="Randomize!" textAlignment="CENTER" />
+          <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#beginProgram" text="Randomize!" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
         </buttons>
       </ButtonBar>
-      <CheckBox mnemonicParsing="false" onMouseClicked="#handleHPOptionClick" text="Randomize HP" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
-      <CheckBox layoutX="35.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#handleWROptionClick" text="Randomize weakness &amp; resistance" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="50.0" />
-      <CheckBox layoutX="45.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#handleRCOptionClick" text="Randomize retreat cost" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="75.0" />
-      <CheckBox layoutX="55.0" layoutY="55.0" mnemonicParsing="false" onMouseClicked="#handleMovesOptionClick" text="Shuffle moves" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0" />
+      <CheckBox layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#handleHPOptionClick" text="Randomize HP" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="21.0" />
+      <CheckBox layoutX="25.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#handleWROptionClick" text="Randomize weakness &amp; resistance" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="46.0" />
+      <CheckBox layoutX="25.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#handleRCOptionClick" text="Randomize retreat cost" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="71.0" />
+      <CheckBox layoutX="25.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMovesOptionClick" text="Shuffle moves" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
+      <ChoiceBox fx:id="minHP1" layoutX="108.0" layoutY="158.0" prefWidth="75.0" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="158.0" />
+      <ChoiceBox fx:id="minHP2" layoutX="108.0" layoutY="190.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxHP1" layoutX="193.0" layoutY="158.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxHP2" layoutX="193.0" layoutY="190.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minRC1" layoutX="277.0" layoutY="158.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minRC2" layoutX="277.0" layoutY="190.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxRC1" layoutX="362.0" layoutY="158.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxRC2" layoutX="362.0" layoutY="190.0" prefWidth="75.0" />
+      <Label layoutX="18.0" layoutY="158.0" prefHeight="25.0" prefWidth="79.0" text="Evo. class 1:" />
+      <Label layoutX="18.0" layoutY="190.0" prefHeight="25.0" prefWidth="79.0" text="Evo. class 2:" />
+      <Label alignment="CENTER" layoutX="108.0" layoutY="127.0" prefHeight="25.0" prefWidth="75.0" text="Min HP" />
+      <Label alignment="CENTER" layoutX="193.0" layoutY="127.0" prefHeight="25.0" prefWidth="75.0" text="Max HP" />
+      <Label alignment="CENTER" layoutX="277.0" layoutY="127.0" prefHeight="25.0" prefWidth="75.0" text="Min R. cost" />
+      <Label alignment="CENTER" layoutX="362.0" layoutY="127.0" prefHeight="25.0" prefWidth="75.0" text="Max R. cost" />
+      <ChoiceBox fx:id="minHP3" layoutX="108.0" layoutY="222.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minHP4" layoutX="108.0" layoutY="254.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxHP3" layoutX="193.0" layoutY="222.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxHP4" layoutX="193.0" layoutY="254.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minRC3" layoutX="277.0" layoutY="222.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minRC4" layoutX="277.0" layoutY="254.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxRC3" layoutX="362.0" layoutY="222.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxRC4" layoutX="362.0" layoutY="254.0" prefWidth="75.0" />
+      <Label layoutX="18.0" layoutY="222.0" prefHeight="25.0" prefWidth="79.0" text="Evo. class 3:" />
+      <Label layoutX="18.0" layoutY="254.0" prefHeight="25.0" prefWidth="79.0" text="Evo. class 4:" />
+      <ChoiceBox fx:id="minHP5" layoutX="108.0" layoutY="286.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minHP6" layoutX="108.0" layoutY="318.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxHP5" layoutX="193.0" layoutY="286.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxHP6" layoutX="193.0" layoutY="318.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minRC5" layoutX="277.0" layoutY="286.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="minRC6" layoutX="277.0" layoutY="318.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxRC5" layoutX="362.0" layoutY="286.0" prefWidth="75.0" />
+      <ChoiceBox fx:id="maxRC6" layoutX="362.0" layoutY="318.0" prefWidth="75.0" />
+      <Label layoutX="18.0" layoutY="286.0" prefHeight="25.0" prefWidth="79.0" text="Evo. class 5:" />
+      <Label layoutX="18.0" layoutY="318.0" prefHeight="25.0" prefWidth="79.0" text="Evo. class 6:" />
    </children>
 </AnchorPane>
