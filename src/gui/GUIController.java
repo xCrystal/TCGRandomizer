@@ -25,6 +25,7 @@ public class GUIController implements Initializable {
 	
 	/* Options to randomize HP, weaknesses/resistances, retreat cost, and shuffle moves */
 	@FXML private CheckBox optionHP, optionWR, optionRC, optionMoves;
+	@FXML private CheckBox optionFillEmpty;
 	
 	/* Minimum and maximum HP and retreat cost values for each of the 6 evolution types */
 	@FXML private ChoiceBox<Integer> minHP1, minHP2, minHP3, minHP4, minHP5, minHP6;
@@ -42,7 +43,7 @@ public class GUIController implements Initializable {
 	@Override
 	public void initialize (URL location, ResourceBundle resources) {
 		
-		setAllOptions();
+		setAllMainOptions();
 		initChoiceBoxes();
 		choiceBoxesListener();
 	}
@@ -55,8 +56,8 @@ public class GUIController implements Initializable {
 		getGuiController().options[which] ^= true;
 	}
 	
-	/** Used during initialization to mark all options as true */
-	public void setAllOptions() {
+	/** Used during initialization to mark all main options as true */
+	public void setAllMainOptions() {
 		handleHPOption();
 		handleWROption();
 		handleRCOption();
@@ -78,7 +79,7 @@ public class GUIController implements Initializable {
 	private void handleMovesOption() {
 		setOption (Settings.Options.MOVES.ordinal());
 	}
-
+	
 	@FXML
 	private void beginProgram() {
 		MainLogic.main();
@@ -128,9 +129,16 @@ public class GUIController implements Initializable {
 	}
 	
 	@FXML
-	private void handleMovesOptionClick() {	
+	private void handleMovesOptionClick() {
 		handleMovesOption();
+		optionFillEmpty.setDisable(optionFillEmpty.isDisable()^true);
 	}
+	
+	@FXML
+	private void handleFillEmptyOptionClick() {	
+		setOption (Settings.Options.FILL.ordinal());
+		Settings.settings.setFillEmptySelected(Settings.settings.isFillEmptySelected()^true);
+	}	
 	
 	/** Initializes all choice boxes to their default values */
 	private void initChoiceBoxes() {

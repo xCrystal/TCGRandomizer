@@ -2,19 +2,19 @@ package settings;
 
 public class Settings {
 
+	public static final int NUM_OPTIONS = 5;
+	
+	public enum Options {
+		HP, WR, RC, MOVES, FILL;
+	}
+	
 	public static final Settings settings = new Settings(1, 1, 0, 1);
-	public static final int NUM_OPTIONS = 4;
 	
 	public Settings (int minWeaknesses, int maxWeaknesses, int minResistances, int maxResistances) {
 		this.minWeaknesses = minWeaknesses;
 		this.maxWeaknesses = maxWeaknesses;
 		this.minResistances = minResistances;
 		this.maxResistances = maxResistances;
-	}
-	
-	public enum Options {
-		
-		HP, WR, RC, MOVES;
 	}
 	
 	private int minWeaknesses;
@@ -52,6 +52,16 @@ public class Settings {
 	
 	public void setMaxResistances(int maxResistances) {
 		this.maxResistances = maxResistances;
+	}
+	
+	private boolean fillEmptyMoveslots;
+	
+	public boolean isFillEmptySelected() {
+		return fillEmptyMoveslots;
+	}
+
+	public void setFillEmptySelected(boolean fillEmptyMoveslots) {
+		this.fillEmptyMoveslots = fillEmptyMoveslots;
 	}
 	
 }

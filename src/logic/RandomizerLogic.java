@@ -52,18 +52,20 @@ class RandomizerLogic {
 		bbWrite.put(RNG.randomRange(et.getMinRC(), et.getMaxRC()));
 	}
 	
-	/** @return the number of energies required to use move in position mn of Pokemon card i starting from typeOffset */
+	/** @return the number of energies required to use move in position mn of Pokemon card i starting from typeOffset,
+	 *  or -1 if said move is empty. */
 	static int howManyEnergies (ByteBuffer bbRead, int i, int mn) throws IOException {
 		
 		Utils.initTo(bbRead, i, MoveFields.ENERGY, mn);		
-		return Utils.addNybbles(bbRead.getInt());
+		return Utils.addNybbles(bbRead.getInt()) + ((bbRead.getInt() != 0) ? 0 : -1);
 	}
 	
 	/** Maps the moves from Pokemon cards between first and last into an integer array:<br>
-	 *  - 0 if move is a Pokemon power or is null.<br>
+	 *  -->  0 if move is a Pokemon power, or if it's empty and "fill empty moveslots" is not selected<br>
+	 *  --> -1 if move is empty, and "fill empty moveslots" is selected<br>
 	 *  Else:<br>
-	 *  - Bits 0-7: Move index<br>
-	 *  - Bits 8-9: Number of energies */
+	 *  --> Bits 0-7: Move index<br>
+	 *  --> Bits 8-9: Number of energies */
 	static int[] getMovesAsIndexArray (ByteBuffer bbRead, Cards first, Cards last) throws IOException {
 		
 		Utils.initTo(bbRead, first.ordinal(), CardFields.START);
@@ -75,8 +77,11 @@ class RandomizerLogic {
 			
 			switch (howManyEnergies (bbRead, first.ordinal() + curCard, moveNumber)) {
 			
+			case -1: /* Ignore (return 0) if "Fill empty moveslots" isn't selected */
+				indexArray[pos] = (Settings.settings.isFillEmptySelected() ? -1 : 0);
+				break;
 			case 0:
-				indexArray[pos]  = 0;
+				indexArray[pos] = 0;
 				break;
 			case 1:
 				indexArray[pos] |= 1 << 8;
@@ -84,7 +89,7 @@ class RandomizerLogic {
 			case 2:
 				indexArray[pos] |= 2 << 8;
 				break;
-			default:
+			default: /* Moves that require 3 and 4 energies are treated equally */
 				indexArray[pos] |= 3 << 8;
 			}
 			
@@ -95,21 +100,46 @@ class RandomizerLogic {
 		return indexArray;
 	}
 	
-	/** Shuffles the array of move indexes across same type Pokemon cards accounting for energy requirements */
+	/** Shuffles the array of move indexes across same type Pokemon cards accounting for energy requirements.<br>
+	 *  Fills indexes corresponding to empty moveslots if "fill empty moveslots" is selected. */
 	static int[] shuffleMoveArray (int[] indexArray) {
 		
+		/* Shuffle move array */
 		for (int curIndex = 0, randomIndex = 0, temp = 0 ; curIndex < indexArray.length ; 
 				randomIndex = RNG.randomRange(0, indexArray.length - 1)) {
-				
-			if ((indexArray[curIndex] & 0xf00) == (indexArray[randomIndex] & 0xf00)) {			
-				if (curIndex != randomIndex) {
 			
-					temp = indexArray[curIndex];
-					indexArray[curIndex] = indexArray[randomIndex];
-					indexArray[randomIndex] = temp;
-					curIndex ++;
+			/* Ignore if Pokemon Power or empty moveslot */
+			if (indexArray[curIndex] == 0 || indexArray[curIndex] == -1) {
+				curIndex ++;
+				
+			} else {
+			
+				if ((indexArray[curIndex] & 0xf00) == (indexArray[randomIndex] & 0xf00)) /* Compare energies */ {			
+					if (curIndex != randomIndex) {
+			
+						temp = indexArray[curIndex];
+						indexArray[curIndex] = indexArray[randomIndex];
+						indexArray[randomIndex] = temp;
+						curIndex ++;
+					}
 				}
 			}		
+		}
+		
+		/* Fill empty moveslots with a move that requires 1 or 2 energy */
+		for (int curIndex = 0, randomIndex = 0 ; curIndex < indexArray.length ; 
+				randomIndex = RNG.randomRange(0, indexArray.length - 1)) {
+			
+			if ((indexArray[randomIndex] & 0xf00) == 0x100 || (indexArray[randomIndex] & 0xf00) == 0x200) {
+				if (randomIndex != curIndex - 1) /* Make sure it's not a move it already knows */ {
+				
+					if (indexArray[curIndex] == -1) {
+						indexArray[curIndex] = indexArray[randomIndex];
+					}
+					curIndex ++;
+				}
+			}
+			
 		}
 		return indexArray;
 	}
@@ -124,18 +154,21 @@ class RandomizerLogic {
 				indexArray[i] = indexArray[i] & 0xff;
 				CardFields moveField;
 			
+				/* Init position of destination buffer for current iteration */
 				if ((i & 1) == 0)
 					moveField = CardFields.MOVE1;
 				else
 					moveField = CardFields.MOVE2;			
 				Utils.initTo(bbWrite, start.ordinal() + i/2, moveField);
 			
+				/* Init position of origin buffer for current iteration */
 				if ((indexArray[i] & 1) == 0)
 					moveField = CardFields.MOVE1;
 				else
 					moveField = CardFields.MOVE2;			
 				Utils.initTo(bbRead, start.ordinal() + indexArray[i]/2, moveField);
 			
+				/* Apply change */
 				bbWrite.put(bbRead.array(), bbRead.position(), Constants.PKMN_MOVE_DATA_LENGTH);
 			}
 		}
