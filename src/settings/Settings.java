@@ -2,10 +2,10 @@ package settings;
 
 public class Settings {
 
-	public static final int NUM_OPTIONS = 5;
+	public static final int NUM_OPTIONS = 6;
 	
 	public enum Options {
-		HP, WR, RC, MOVES, FILL;
+		HP, WR, RC, MOVES, FILL, MATCH;
 	}
 	
 	public static final Settings settings = new Settings(1, 1, 0, 1);
@@ -62,6 +62,16 @@ public class Settings {
 
 	public void setFillEmptySelected(boolean fillEmptyMoveslots) {
 		this.fillEmptyMoveslots = fillEmptyMoveslots;
+	}
+
+	private boolean matchEnergies;
+	
+	public boolean isMatchEnergiesSelected() {
+		return matchEnergies;
+	}
+
+	public void setMatchEnergiesSelected(boolean matchEnergies) {
+		this.matchEnergies = matchEnergies;
 	}
 	
 }

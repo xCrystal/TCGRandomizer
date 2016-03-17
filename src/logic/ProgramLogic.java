@@ -8,6 +8,7 @@ import java.nio.channels.FileChannel;
 import static constants.Cards.*;
 import constants.Cards;
 import constants.Constants;
+import constants.Fields.CardFields;
 import gui.GUIController;
 import settings.EvoTypes;
 import settings.Settings.Options;
@@ -48,6 +49,31 @@ class ProgramLogic {
 		ch.read(bbRead);
 		Utils.init(ch);
 		ch.read(bbWrite);
+	}
+	
+	static void matchAttackEnergiesToType (ByteBuffer bb) throws IOException {
+
+		byte[] grass_1 = {0x01, 0x00, 0x00, 0x00};
+		byte[] water_1 = {0x00, 0x01, 0x00, 0x00};
+		byte[] light_2 = {0x00, 0x20, 0x00, 0x00};
+		
+		Utils.initTo(bb, Cards.Exeggcute.ordinal(), CardFields.MOVE1);
+		bb.put(grass_1); /* Exeggcute's Hypnosis */
+		
+		Utils.initTo(bb, Cards.Exeggutor.ordinal(), CardFields.MOVE1);
+		bb.put(grass_1); /* Exeggutor's Teleport */
+		
+		Utils.initTo(bb, Cards.Psyduck.ordinal(), CardFields.MOVE1);
+		bb.put(water_1); /* Psyduck's Headache */
+		
+		Utils.initTo(bb, Cards.Golduck.ordinal(), CardFields.MOVE1);
+		bb.put(water_1); /* Golduck's Psyshock */
+		
+		Utils.initTo(bb, Cards.SurfingPikachu1.ordinal(), CardFields.MOVE1);
+		bb.put(light_2); /* Surfing Pikachu 1's Surf */
+		
+		Utils.initTo(bb, Cards.SurfingPikachu2.ordinal(), CardFields.MOVE1);
+		bb.put(light_2); /* Surfing Pikachu 2's Surf */
 	}
 	
 	/** Applies the randomization in the second byte buffer */

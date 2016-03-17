@@ -13,6 +13,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 import constants.Constants;
+import settings.Settings;
 import utils.Utils;
 
 public class MainLogic {
@@ -36,6 +37,7 @@ public class MainLogic {
 			
 			ProgramLogic.createRomCopy(chin, chout);
 			ProgramLogic.readPokemonCardsData(chin, bbRead, bbWrite);
+			if (Settings.settings.isMatchEnergiesSelected() == true) ProgramLogic.matchAttackEnergiesToType(bbRead);		
 			ProgramLogic.doRandomization(bbRead, bbWrite);
 			ProgramLogic.saveChangesToRom(chout, bbWrite);
 			ProgramLogic.disablePracticeMode(fout);

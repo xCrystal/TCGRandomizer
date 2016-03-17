@@ -22,7 +22,8 @@
       <CheckBox fx:id="optionWR" layoutX="25.0" layoutY="46.0" mnemonicParsing="false" onMouseClicked="#handleWROptionClick" selected="true" text="Randomize weakness &amp; resistance" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="46.0" />
       <CheckBox fx:id="optionRC" layoutX="25.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#handleRCOptionClick" selected="true" text="Randomize retreat cost" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="71.0" />
       <CheckBox fx:id="optionMoves" layoutX="25.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMovesOptionClick" selected="true" text="Shuffle moves" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
-      <CheckBox fx:id="optionFillEmpty" layoutX="150.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleFillEmptyOptionClick" selected="false" text="Fill empty moveslots" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="96.0" />
+      <CheckBox fx:id="optionFillEmpty" layoutX="145.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleFillEmptyOptionClick" selected="false" text="Fill empty moveslots" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="96.0" />
+      <CheckBox fx:id="optionMatchEnergies" layoutX="295.0" layoutY="96.0" mnemonicParsing="false" onMouseClicked="#handleMatchEnergiesOptionClick" selected="false" text="Match energies to type" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="96.0" />
       <ChoiceBox fx:id="minHP1" layoutX="108.0" layoutY="154.0" prefWidth="75.0" AnchorPane.leftAnchor="108.0" AnchorPane.topAnchor="154.0" />
       <ChoiceBox fx:id="minHP2" layoutX="108.0" layoutY="186.0" prefWidth="75.0" />
       <ChoiceBox fx:id="maxHP1" layoutX="193.0" layoutY="154.0" prefWidth="75.0" />

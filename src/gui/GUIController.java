@@ -25,7 +25,7 @@ public class GUIController implements Initializable {
 	
 	/* Options to randomize HP, weaknesses/resistances, retreat cost, and shuffle moves */
 	@FXML private CheckBox optionHP, optionWR, optionRC, optionMoves;
-	@FXML private CheckBox optionFillEmpty;
+	@FXML private CheckBox optionFillEmpty, optionMatchEnergies;
 	
 	/* Minimum and maximum HP and retreat cost values for each of the 6 evolution types */
 	@FXML private ChoiceBox<Integer> minHP1, minHP2, minHP3, minHP4, minHP5, minHP6;
@@ -132,12 +132,19 @@ public class GUIController implements Initializable {
 	private void handleMovesOptionClick() {
 		handleMovesOption();
 		optionFillEmpty.setDisable(optionFillEmpty.isDisable()^true);
+		optionMatchEnergies.setDisable(optionMatchEnergies.isDisable()^true);
 	}
 	
 	@FXML
 	private void handleFillEmptyOptionClick() {	
 		setOption (Settings.Options.FILL.ordinal());
 		Settings.settings.setFillEmptySelected(Settings.settings.isFillEmptySelected()^true);
+	}
+	
+	@FXML
+	private void handleMatchEnergiesOptionClick() {	
+		setOption (Settings.Options.MATCH.ordinal());
+		Settings.settings.setMatchEnergiesSelected(Settings.settings.isMatchEnergiesSelected()^true);
 	}	
 	
 	/** Initializes all choice boxes to their default values */
