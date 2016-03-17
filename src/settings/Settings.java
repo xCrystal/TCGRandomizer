@@ -54,24 +54,4 @@ public class Settings {
 		this.maxResistances = maxResistances;
 	}
 	
-	private boolean fillEmptyMoveslots;
-	
-	public boolean isFillEmptySelected() {
-		return fillEmptyMoveslots;
-	}
-
-	public void setFillEmptySelected(boolean fillEmptyMoveslots) {
-		this.fillEmptyMoveslots = fillEmptyMoveslots;
-	}
-
-	private boolean matchEnergies;
-	
-	public boolean isMatchEnergiesSelected() {
-		return matchEnergies;
-	}
-
-	public void setMatchEnergiesSelected(boolean matchEnergies) {
-		this.matchEnergies = matchEnergies;
-	}
-	
 }

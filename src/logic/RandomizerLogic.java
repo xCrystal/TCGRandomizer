@@ -7,12 +7,16 @@ import constants.Cards;
 import constants.Constants;
 import constants.Fields.CardFields;
 import constants.Fields.MoveFields;
+import gui.GUIController;
 import settings.EvoTypes;
 import settings.Settings;
+import settings.Settings.Options;
 import utils.RNG;
 import utils.Utils;
 
 class RandomizerLogic {
+	
+	private static final GUIController gui = GUIController.getGuiController();
 
 	RandomizerLogic() {}
 	
@@ -78,7 +82,7 @@ class RandomizerLogic {
 			switch (howManyEnergies (bbRead, first.ordinal() + curCard, moveNumber)) {
 			
 			case -1: /* Ignore (return 0) if "Fill empty moveslots" isn't selected */
-				indexArray[pos] = (Settings.settings.isFillEmptySelected() ? -1 : 0);
+				indexArray[pos] = (gui.getOption(Options.FILL.ordinal()) ? -1 : 0);
 				break;
 			case 0:
 				indexArray[pos] = 0;

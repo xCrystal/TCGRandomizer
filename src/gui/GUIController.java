@@ -138,13 +138,11 @@ public class GUIController implements Initializable {
 	@FXML
 	private void handleFillEmptyOptionClick() {	
 		setOption (Settings.Options.FILL.ordinal());
-		Settings.settings.setFillEmptySelected(Settings.settings.isFillEmptySelected()^true);
 	}
 	
 	@FXML
 	private void handleMatchEnergiesOptionClick() {	
 		setOption (Settings.Options.MATCH.ordinal());
-		Settings.settings.setMatchEnergiesSelected(Settings.settings.isMatchEnergiesSelected()^true);
 	}	
 	
 	/** Initializes all choice boxes to their default values */
