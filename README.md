@@ -22,6 +22,8 @@ The minimum and maximum HP, retreat cost, and number of weaknesses and resistanc
 
 #### <b>Planned features or tweaks (in no particular order)</b>
 
+### I'm no longer working on this. Anyone is free to pick this project up and add new features or fix current issues if he/she wishes
+
 * Fix wrong Pokemon names showing in the descriptions of the shuffled moves.
 * Selectable "energy mappings" in the shuffle moves option.
 * Option to force a damaing move on every card.
